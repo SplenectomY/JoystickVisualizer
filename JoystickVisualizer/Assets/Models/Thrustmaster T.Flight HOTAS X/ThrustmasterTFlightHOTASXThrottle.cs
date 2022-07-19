@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrustmasterTFlightHOTASXThrottle : MonoBehaviour {
+public class ThrustmasterTFlightHOTASXThrottle : MonoBehaviour 
+{
     public const string USB_ID = "044f:b108";
     //public const string USB_ID = "044f:0404";
 
@@ -10,15 +11,9 @@ public class ThrustmasterTFlightHOTASXThrottle : MonoBehaviour {
     public GameObject LeftThrottle;
     public GameObject RightThrottle;
 
-    // Use this for initialization
     void Start()
     {
         UDPListener.StickEventListener += StickEvent;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     void StickEvent(JoystickState state)

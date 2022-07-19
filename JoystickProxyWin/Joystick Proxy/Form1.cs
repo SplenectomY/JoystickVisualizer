@@ -56,19 +56,20 @@ namespace Joystick_Proxy
         private void UpdateEndpoint(string host, int port)
         {
             IPAddress hostIp = IPAddress.Loopback;
-            foreach(IPAddress ip in Dns.GetHostAddresses(host))
+            foreach (IPAddress ip in Dns.GetHostAddresses(host))
             {
-                if(ip.AddressFamily == AddressFamily.InterNetwork)
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
                 {
                     hostIp = ip;
                     break;
                 }
             }
 
-            if(_endPoint == null)
+            if (_endPoint == null)
             {
                 _endPoint = new IPEndPoint(hostIp, port);
-            } else
+            } 
+            else
             {
                 _endPoint.Address = hostIp;
                 _endPoint.Port = port;
@@ -100,8 +101,6 @@ namespace Joystick_Proxy
             List<DeviceInstance> oldDeviceInstances = _devices.ToList().ConvertAll(d => d.DeviceInstance);
             List<DeviceInstance> foundDeviceInstances = _directInput.GetDevices().ToList();
 
-            //List<DeviceInstance> removedDeviceInstances = oldDeviceInstances.Except(foundDeviceInstances).Where(d => !IsSupported(d)).ToList();
-
             foreach(DeviceInstance deviceInstance in foundDeviceInstances)
             {
                 if (_devices.Where(d => d.DeviceInstance.InstanceGuid == deviceInstance.InstanceGuid).Count() == 0)
@@ -111,21 +110,21 @@ namespace Joystick_Proxy
                 }
             }
             
-            foreach(ControllerDevice device in _devices)
+            foreach (ControllerDevice device in _devices)
             {
                 bool match = false;
                 if (SupportedDevices.ContainsKey(device.UsbId) || ShowAllDevicesCheckBox.Checked)
                 {
                     match = foundDeviceInstances.ConvertAll(d => d.InstanceGuid.ToString()).Contains(device.Guid);
                 }
-                if(!match)
+                if (!match)
                 {
                     // Remove device
                     removedDevices.Add(device);
                 }
             }
             
-            foreach(ControllerDevice device in removedDevices)
+            foreach (ControllerDevice device in removedDevices)
             {
                 RemoveDevice(device);
             }
@@ -223,8 +222,11 @@ namespace Joystick_Proxy
             }
         }
 
+        int refreshCount;
+
         private void RefreshDevicesTimer_Tick(object sender, System.EventArgs e)
         {
+            if (refreshCount++ > 10) return;
             ControllerDevice selectedItem = null;
             int selectedCell = 0;
 
@@ -278,10 +280,9 @@ namespace Joystick_Proxy
             foreach (DataGridViewRow row in DevicesDataGridView.Rows)
             {
                 ControllerDevice cd = (ControllerDevice)row.DataBoundItem;
-                if(!SupportedDevices.ContainsKey(cd.UsbId))
+                if (!SupportedDevices.ContainsKey(cd.UsbId))
                 {
                     row.DefaultCellStyle.BackColor = Color.LightGray;
-                    //row.Cells[0].ReadOnly = true;
                 }
             }
         }

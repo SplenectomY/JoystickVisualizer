@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VPCStarCitizenL : MonoBehaviour {
-    public const string USB_ID = "03ef:2004";
+    public const string USB_ID = "3344:812f";
     //public const string USB_ID = "044f:0402";
 
     public GameObject Model;
     public GameObject Joystick;
 
-    // Use this for initialization
+    float x = 0f;
+    float y = 0f;
+    float z = 0f;
+
     void Start()
     {
         UDPListener.StickEventListener += StickEvent;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        Model.SetActive(true);
     }
 
     void StickEvent(JoystickState state)
@@ -27,24 +26,39 @@ public class VPCStarCitizenL : MonoBehaviour {
             return;
         }
 
-        Model.SetActive(true);
+        bool updateStickRotation = false;
 
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
+            
             switch (entry.Key)
             {
-                case "Connected":
-                    if (Model.activeInHierarchy)
-                        Model.SetActive(entry.Value == 1);
-                    break;
+                //case "Connected":
+                //    if (Model.activeInHierarchy)
+                //        Model.SetActive(entry.Value == 1);
+                //    break;
 
                 case "X":
-                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, Joystick.transform.localEulerAngles.y, ConvertRange(entry.Value, 0, 65535, 20, -20));
+                    //Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, Joystick.transform.localEulerAngles.y, );
+                    z = ConvertRange(entry.Value, 0, 65535, 20, -20);
+                    updateStickRotation = true;
                     break;
                 case "Y":
-                    Joystick.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), Joystick.transform.localEulerAngles.y, Joystick.transform.localEulerAngles.z);
+                    //Joystick.transform.localEulerAngles = new Vector3(, Joystick.transform.localEulerAngles.y, Joystick.transform.localEulerAngles.z);
+                    x = -ConvertRange(entry.Value, 0, 65535, 20, -20);
+                    updateStickRotation = true;
+                    break;
+                case "Z":
+                    //Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, , Joystick.transform.localEulerAngles.z);
+                    y = -ConvertRange(entry.Value, 0, 65535, 20, -20);
+                    updateStickRotation = true;
                     break;
             }
+        }
+
+        if (updateStickRotation)
+        {
+            Joystick.transform.localEulerAngles = new Vector3(x, y, z);
         }
     }
 

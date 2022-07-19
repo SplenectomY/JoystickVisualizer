@@ -8,7 +8,7 @@ namespace Assets
         public string UsbID;
         public string Name;
 
-        public Dictionary<string, int> Data = new Dictionary<string, int>();
+        public Dictionary<string, int> Data = new();
 
         public JoystickState(string[] state)
         {
@@ -26,7 +26,7 @@ namespace Assets
                         string[] keyVal = state[i].Split('=');
                         if (keyVal.Length == 2)
                         {
-                            Data[keyVal[0]] = Int32.Parse(keyVal[1]);
+                            Data[keyVal[0]] = int.Parse(keyVal[1]);
                         }
                         break;
 
