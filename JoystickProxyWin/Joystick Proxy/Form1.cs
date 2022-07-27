@@ -30,6 +30,7 @@ namespace Joystick_Proxy
         private StreamWriter logFileStream = null;
 
         private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
+        private int refreshCount = 0;
 
         public Form1()
         {
@@ -225,6 +226,7 @@ namespace Joystick_Proxy
 
         private void RefreshDevicesTimer_Tick(object sender, System.EventArgs e)
         {
+            refreshCount++;
             ControllerDevice selectedItem = null;
             int selectedCell = 0;
 
@@ -247,6 +249,9 @@ namespace Joystick_Proxy
                     break;
                 }
             }
+
+            if (refreshCount >= 5)
+                RefreshDevicesTimer.Enabled = false;
         }
 
         private void DevicesDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -389,6 +394,12 @@ namespace Joystick_Proxy
             Properties.Settings.Default.Port = port;
             Properties.Settings.Default.Save();
             UpdateEndpoint(VisualizerHostTextBox.Text, port);
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            refreshCount = 0;
+            RefreshDevicesTimer.Enabled = true;
         }
     }
 }
