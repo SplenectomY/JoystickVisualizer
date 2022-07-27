@@ -52,6 +52,7 @@
             this.VisualizerHostTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.PortInput = new System.Windows.Forms.NumericUpDown();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DevicesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ControllerDeviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
@@ -82,6 +83,7 @@
             this.DevicesDataGridView.MultiSelect = false;
             this.DevicesDataGridView.Name = "DevicesDataGridView";
             this.DevicesDataGridView.RowHeadersVisible = false;
+            this.DevicesDataGridView.RowHeadersWidth = 62;
             this.DevicesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DevicesDataGridView.Size = new System.Drawing.Size(550, 355);
             this.DevicesDataGridView.TabIndex = 0;
@@ -97,6 +99,7 @@
             this.deviceEnabled.FillWeight = 10F;
             this.deviceEnabled.HeaderText = "Enabled";
             this.deviceEnabled.IndeterminateValue = "";
+            this.deviceEnabled.MinimumWidth = 8;
             this.deviceEnabled.Name = "deviceEnabled";
             this.deviceEnabled.ToolTipText = "Enable device input polling";
             this.deviceEnabled.TrueValue = "true";
@@ -107,6 +110,7 @@
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.FillWeight = 70F;
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -118,6 +122,7 @@
             this.uSBIDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.uSBIDDataGridViewTextBoxColumn.FillWeight = 20F;
             this.uSBIDDataGridViewTextBoxColumn.HeaderText = "USB ID";
+            this.uSBIDDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.uSBIDDataGridViewTextBoxColumn.Name = "uSBIDDataGridViewTextBoxColumn";
             this.uSBIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -146,6 +151,7 @@
             this.DataGridView1.Location = new System.Drawing.Point(568, 12);
             this.DataGridView1.Name = "DataGridView1";
             this.DataGridView1.RowHeadersVisible = false;
+            this.DataGridView1.RowHeadersWidth = 62;
             this.DataGridView1.Size = new System.Drawing.Size(302, 355);
             this.DataGridView1.TabIndex = 2;
             // 
@@ -155,6 +161,7 @@
             this.InputName.DataPropertyName = "Name";
             this.InputName.FillWeight = 50F;
             this.InputName.HeaderText = "Input";
+            this.InputName.MinimumWidth = 8;
             this.InputName.Name = "InputName";
             // 
             // InputValue
@@ -163,6 +170,7 @@
             this.InputValue.DataPropertyName = "Value";
             this.InputValue.FillWeight = 50F;
             this.InputValue.HeaderText = "Value";
+            this.InputValue.MinimumWidth = 8;
             this.InputValue.Name = "InputValue";
             // 
             // ReadInputTimer
@@ -187,9 +195,9 @@
             // 
             this.ShowAllDevicesCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ShowAllDevicesCheckBox.AutoSize = true;
-            this.ShowAllDevicesCheckBox.Location = new System.Drawing.Point(13, 379);
+            this.ShowAllDevicesCheckBox.Location = new System.Drawing.Point(13, 372);
             this.ShowAllDevicesCheckBox.Name = "ShowAllDevicesCheckBox";
-            this.ShowAllDevicesCheckBox.Size = new System.Drawing.Size(106, 17);
+            this.ShowAllDevicesCheckBox.Size = new System.Drawing.Size(151, 24);
             this.ShowAllDevicesCheckBox.TabIndex = 4;
             this.ShowAllDevicesCheckBox.Text = "Show all devices";
             this.ShowAllDevicesCheckBox.UseVisualStyleBackColor = true;
@@ -201,7 +209,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(455, 380);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.Size = new System.Drawing.Size(119, 20);
             this.label1.TabIndex = 6;
             this.label1.Text = "Visualizer Host:";
             // 
@@ -213,9 +221,9 @@
             // 
             this.LogToFileCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LogToFileCheckbox.AutoSize = true;
-            this.LogToFileCheckbox.Location = new System.Drawing.Point(125, 379);
+            this.LogToFileCheckbox.Location = new System.Drawing.Point(125, 372);
             this.LogToFileCheckbox.Name = "LogToFileCheckbox";
-            this.LogToFileCheckbox.Size = new System.Drawing.Size(72, 17);
+            this.LogToFileCheckbox.Size = new System.Drawing.Size(104, 24);
             this.LogToFileCheckbox.TabIndex = 7;
             this.LogToFileCheckbox.Text = "Log to file";
             this.LogToFileCheckbox.UseVisualStyleBackColor = true;
@@ -227,7 +235,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(323, 380);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.Size = new System.Drawing.Size(98, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "Polling Rate:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -242,7 +250,7 @@
             0,
             0});
             this.PollingRateInput.Name = "PollingRateInput";
-            this.PollingRateInput.Size = new System.Drawing.Size(53, 20);
+            this.PollingRateInput.Size = new System.Drawing.Size(53, 26);
             this.PollingRateInput.TabIndex = 9;
             this.PollingRateInput.Value = new decimal(new int[] {
             34,
@@ -259,7 +267,7 @@
             this.VisualizerHostTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Joystick_Proxy.Properties.Settings.Default, "Host", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.VisualizerHostTextBox.Location = new System.Drawing.Point(540, 377);
             this.VisualizerHostTextBox.Name = "VisualizerHostTextBox";
-            this.VisualizerHostTextBox.Size = new System.Drawing.Size(115, 20);
+            this.VisualizerHostTextBox.Size = new System.Drawing.Size(115, 26);
             this.VisualizerHostTextBox.TabIndex = 5;
             this.VisualizerHostTextBox.Text = global::Joystick_Proxy.Properties.Settings.Default.Host;
             this.VisualizerHostTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VisualizerHostTextBox_KeyPress);
@@ -270,7 +278,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(661, 379);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.Size = new System.Drawing.Size(42, 20);
             this.label3.TabIndex = 10;
             this.label3.Text = "Port:";
             // 
@@ -288,7 +296,7 @@
             0,
             0});
             this.PortInput.Name = "PortInput";
-            this.PortInput.Size = new System.Drawing.Size(65, 20);
+            this.PortInput.Size = new System.Drawing.Size(65, 26);
             this.PortInput.TabIndex = 11;
             this.PortInput.Value = new decimal(new int[] {
             1000,
@@ -297,10 +305,22 @@
             0});
             this.PortInput.ValueChanged += new System.EventHandler(this.PortInput_ValueChanged);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRefresh.Location = new System.Drawing.Point(235, 372);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 12;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // Form1
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(882, 405);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.PortInput);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.PollingRateInput);
@@ -355,6 +375,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn uSBIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown PortInput;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 

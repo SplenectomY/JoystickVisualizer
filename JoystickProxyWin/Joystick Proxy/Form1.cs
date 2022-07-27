@@ -31,6 +31,8 @@ namespace Joystick_Proxy
 
         private static Dictionary<string, string> SupportedDevices = new Dictionary<string, string>();
 
+        int refreshCount = 0;
+
         public Form1()
         {
             LoadConfig();
@@ -222,11 +224,10 @@ namespace Joystick_Proxy
             }
         }
 
-        int refreshCount;
-
         private void RefreshDevicesTimer_Tick(object sender, System.EventArgs e)
         {
-            if (refreshCount++ > 10) return;
+            if (refreshCount++ > 5) return;
+
             ControllerDevice selectedItem = null;
             int selectedCell = 0;
 
@@ -390,6 +391,11 @@ namespace Joystick_Proxy
             Properties.Settings.Default.Port = port;
             Properties.Settings.Default.Save();
             UpdateEndpoint(VisualizerHostTextBox.Text, port);
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            refreshCount = 0;
         }
     }
 }
